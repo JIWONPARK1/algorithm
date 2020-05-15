@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script type="text/javascript">
+  var dictionary = {
+    Key1: '1',
+    Key2: {
+      a: '2',
+      b: '3',
+      c: {
+        d: '3',
+        e: '1'
+      }
+    }
+  };
+
+  function spreadObject(dictionary) {
+    let result = {};
+    spreadObjectHelper(dictionary, '');
+
+    function spreadObjectHelper(dictionary, parents) {
+      for (let [key, value] of Object.entries(dictionary)) {
+        if (typeof value === 'object') {
+          spreadObjectHelper(value, parents + '.' + key);
+        } else {
+          if (parents) {
+            result[parents + '.' + key] = value;
+          } else {
+            result[key] = value;
+          }
+        }
+      }
+    }
+  }
+  spreadObject(dictionary);
+</script>
