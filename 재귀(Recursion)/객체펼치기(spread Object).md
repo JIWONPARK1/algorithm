@@ -47,7 +47,7 @@ function spreadObject(dictionary) {
   function spreadObjectHelper(dictionary, parents) {
     for (let [key, value] of Object.entries(dictionary)) {
       if (typeof value === 'object') {
-        spreadObjectHelper(value, parents + '.' + key);
+        spreadObjectHelper(value, parents ? parents + '.' + key : key);
       } else {
         if (parents) {
           result[parents + '.' + key] = value;
