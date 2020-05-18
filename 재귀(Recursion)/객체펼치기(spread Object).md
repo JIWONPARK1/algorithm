@@ -40,12 +40,12 @@ var dictionary = {
 
 ```javascript
 //  1  step
-function spreadObject(dictionary) {
+function spreadObject(arr) {
   let result = {};
-  spreadObjectHelper(dictionary, '');
+  spreadObjectHelper(arr, '');
 
-  function spreadObjectHelper(dictionary, parents) {
-    for (let [key, value] of Object.entries(dictionary)) {
+  function spreadObjectHelper(arr, parents) {
+    for (let [key, value] of Object.entries(arr)) {
       if (typeof value === 'object') {
         spreadObjectHelper(value, parents ? parents + '.' + key : key);
       } else {
@@ -56,6 +56,7 @@ function spreadObject(dictionary) {
         }
       }
     }
+    return result;
   }
 }
 ```
@@ -65,9 +66,27 @@ function spreadObject(dictionary) {
 > ### 입력
 
 ```javascript
+var familyArray = {
+  grandFather: 'james',
+  gransMother: {
+    'mother-1': 'Mary',
+    'mother-2': 'Sara',
+    'mother-3': {
+      'daughter-1': 'Saera',
+      'daughter-2': 'Judy'
+    }
+  }
+};
 ```
 
 > ### 출력
 
 ```javascript
+  {
+    "grandFather": "james"
+    "gransMother.mother-1": "Mary"
+    "gransMother.mother-2": "Sara"
+    "gransMother.mother-3.daughter-1": "Saera"
+    "gransMother.mother-3.daughter-2": "Judy"
+  }
 ```

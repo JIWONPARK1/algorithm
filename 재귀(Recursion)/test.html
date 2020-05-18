@@ -8,39 +8,19 @@
   <body></body>
 </html>
 <script type="text/javascript">
-  var dictionary = {
-    Key1: '1',
-    Key2: {
-      a: '2',
-      b: '3',
-      c: {
-        d: '3',
-        e: '1',
-        f: {
-          f1: '55',
-          f2: '67'
-        }
-      }
+  const str = 'testset';
+
+  function checkReadBackword(arr) {
+    let backwordStr = '';
+    for (let i = arr.length - 1; i > -1; i--) {
+      backwordStr += arr[i];
     }
-  };
-
-  function spreadObject(dictionary) {
-    let result = {};
-    spreadObjectHelper(dictionary, '');
-
-    function spreadObjectHelper(dictionary, parents) {
-      for (let [key, value] of Object.entries(dictionary)) {
-        if (typeof value === 'object') {
-          spreadObjectHelper(value, parents ? parents + '.' + key : key);
-        } else {
-          if (parents) {
-            result[parents + '.' + key] = value;
-          } else {
-            result[key] = value;
-          }
-        }
-      }
+    if (backwordStr === arr) {
+      return true;
+    } else {
+      return false;
     }
   }
-  spreadObject(dictionary);
+  const result = checkReadBackword(str);
+  console.log(result);
 </script>
