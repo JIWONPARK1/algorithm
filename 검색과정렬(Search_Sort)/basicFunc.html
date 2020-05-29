@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <p>retult : <span id="resultData"></span></p>
+</body>
+
+</html>
+<script type="text/javascript">
+  const arr = [14, 33, 27, 10, 35, 40, 42, 44];
+
+  /*
+   * 검색
+   */
+
+  //이진검색
+
+  const binarySearch = (arr, n) => {
+    let min = 0;
+    let max = arr.length - 1;
+    while (min <= max) {
+      let mid = Math.floor((min + max) / 2);
+      if (arr[mid] === n) {
+        return mid;
+      } else if (n > arr[mid]) {
+        min = mid;
+      } else {
+        max = mid
+      }
+    }
+    return -1
+  }
+
+  /*
+   * 정렬
+   */
+
+  //거품 정렬
+  const bubbleSort = (arr) => {
+    const newArr = [...arr]
+    for (let i = 0; i < arr.length; i++) {
+      let prev = newArr[i];
+      let next = newArr[i + 1]
+      if (prev > next) {
+        newArr[i] = next;
+        newArr[i + 1] = prev
+      }
+    }
+    return newArr
+
+  }
+
+  const swap = (arr, index1, index2) => {
+    let temp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = temp
+  }
+
+  //선택 정렬
+  const selectSort = (arr) => {
+    let len = arr.length;
+    let min;
+    for (let i = 0; i < len; i++) {
+      min = i;
+      for (let j = i + 1; j < len; j++) {
+        if (arr[j] < arr[min]) {
+          min = j;
+        }
+      }
+      if (i !== min) {
+        swap(arr, i, min)
+      }
+    }
+    return arr
+  }
+
+  //빠른 정렬
+
+  const str = 'practice makes perfect. get perfect by practice. just practice.';
+  const countSentence = (inputs) => {
+    // 점  삭제 & 배열변경
+
+    const parseArr = inputs.replace(/[.]/g, '').split(' ');;
+
+    //배열 순회 후 갯수 카운팅
+    const resultArr = {};
+    for (let i = 0; i < parseArr.length; i++) {
+      if (resultArr[parseArr[i]] >= 0) {
+        resultArr[parseArr[i]]++;
+      } else {
+        resultArr[parseArr[i]] = 1
+      }
+    }
+
+    for (let key in resultArr) {
+      let max = 0;
+      console.log(resultArr[key])
+    }
+
+  }
+
+  document
+    .getElementById('resultData')
+    .insertAdjacentHTML('afterbegin', countSentence(str));
+</script>
