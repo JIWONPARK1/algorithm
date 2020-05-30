@@ -105,25 +105,8 @@
 
   }
 
-  function solution(citations) {
-    var answer = 0;
-    const sortArr = citations.sort((a, b) => {
-      return b - a;
-    })
 
-    for (let i = 1; i < sortArr[0]; i++) {
-      const hArr = sortArr.filter(sort => sort >= i);
-      const lArr = sortArr.filter(sort => sort < i);
-      if (hArr.length >= i && lArr.length < i) {
-        answer = i;
-      }
-    }
-    console.log(answer)
-    return answer + 1;
-  }
-  solution([0, 1, 1, 1, 1, 3, 3, 4])
-
-  // document
-  //   .getElementById('resultData')
-  //   .insertAdjacentHTML('afterbegin', countSentence(str));
+  document
+    .getElementById('resultData')
+    .insertAdjacentHTML('afterbegin', countSentence(str));
 </script>
