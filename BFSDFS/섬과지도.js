@@ -67,51 +67,50 @@ arrayList.map((array, index) => {
 
 console.log(result.join("\n"));
 
+function BFS(start, v, visited, w, h) {
+  let count = 0;
+  const dir = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
 
+  const queue = [start];
+  visited[start[0]][start[1]] = true;
 
+  while (queue.length) {
+    let [curX, curY] = queue.shift();
+    if (v[curX][curY]) count++;
+    for (let i = 0; i < 4; i++) {
+      const nx = dir[i][0] + curX;
+      const ny = dir[i][1] + curY;
 
-function BFS(start,v,visited,w,h){
-    let count = 0;
-    const dir = [[0,1],[0,-1],[1,0],[-1,0]] 
+      if (0 > nx || 0 > ny || nx > w || ny > h) continue;
 
-    const queue = [start];
-    visited[start[0]][start[1]] = true;
-
-    while(queue.length){
-        let [curX,curY] = queue.shift();
-        if(v[curX][curY]) count++;
-        for(let i = 0; i < 4; i++){
-            const nx = dir[i][0] + curX;
-            const ny = dir[i][1] + curY;
-
-            if(0 > nx || 0 > ny || nx > w || ny > h) continue
-
-            if(!visited[nx][ny] && v[nx][ny] === 1) {
-                queue.push([nx,ny]); 
-                visited[nx][ny] = true;
-            };         
-        } 
+      if (!visited[nx][ny] && v[nx][ny] === 1) {
+        queue.push([nx, ny]);
+        visited[nx][ny] = true;
+      }
     }
-        return count;
+  }
+  return count;
 }
 
+function solution(v) {
+  let answer = [0, 0];
+  const w = v[0].length;
+  const h = v.length;
+  let visited = Array.from(Array(h), () => Array(w).fill(false));
 
-
-function solution(v)
-{
-    let answer = [0,0];
-    const w = v[0].length;
-    const h = v.length;   
-    let visited = Array.from(Array(h),()=>Array(w).fill(false))
-
-    for(let i = 0; i< w;i++){
-        for(let j = 0; j< h; j++){
-          if(v[i][j] === 1 && !visited[i][j]){
-                const count = BFS([i,j],v,visited,w,h);
-                if(count) answer[0]++
-                if(answer[1] < count) answer[1] = count
-          }
-        }
+  for (let i = 0; i < w; i++) {
+    for (let j = 0; j < h; j++) {
+      if (v[i][j] === 1 && !visited[i][j]) {
+        const count = BFS([i, j], v, visited, w, h);
+        if (count) answer[0]++;
+        if (answer[1] < count) answer[1] = count;
+      }
     }
-    return answer;
+  }
+  return answer;
 }
