@@ -8,15 +8,18 @@ function solution(a, b) {
   let answer = "";
 
   for (let i = 0; i < a.length; i++) {
-    if (a[i] === b[i]) answer += "D";
-    if (a[i] < b[i]) answer += "B";
-    if (a[i] > b[i]) answer += "A";
-    else answer += "B";
+    if (a[i] === b[i]) {
+      answer += "D";
+    } else if (a[i] !== 2 && b[i] !== 2) {
+      answer += a[i] > b[i] ? "B" : "A";
+    } else {
+      answer += a[i] < b[i] ? "B" : "A";
+    }
   }
 
   return answer;
 }
 
-let a = [2, 3, 3, 1, 3];
-let b = [1, 1, 2, 2, 3];
+let a = [2, 3, 3, 1, 3, 1, 2];
+let b = [1, 1, 2, 2, 3, 3, 3];
 console.log(solution(a, b));
