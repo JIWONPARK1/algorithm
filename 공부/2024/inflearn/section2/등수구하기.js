@@ -7,10 +7,23 @@
  * 즉 가장 높은 점수가 92점인데 92점이 3명 존재하면 1등이 3명이고 그 다음 학생은 4등이 된다.
  */
 
-function solution(arr) {
+// 내가 푼버전
+function mySolution(arr) {
   const sortedArr = [...arr].sort((a, b) => b - a);
-  return arr.map((e) => sortedArr.indexOf(e) + 1);
+  return arr.map((e) => sortedArr.lastIndexOf(e) + 1);
 }
 
-let arr = [87, 89, 92, 100, 76];
+// 강의
+function solution(arr) {
+  let answer = Array.from({ length: arr.length }, () => 1);
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      console.log(arr[i], arr[j]);
+      if (arr[i] < arr[j]) answer[i]++;
+    }
+  }
+  return answer;
+}
+
+let arr = [92, 92, 92, 100, 76];
 console.log(solution(arr));
