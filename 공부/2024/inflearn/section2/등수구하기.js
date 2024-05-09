@@ -8,8 +8,8 @@
  */
 
 function solution(arr) {
-  let answer = 0;
-  return answer;
+  const sortedArr = [...arr].sort((a, b) => b - a);
+  return arr.map((e) => sortedArr.indexOf(e) + 1);
 }
 
 let arr = [87, 89, 92, 100, 76];
