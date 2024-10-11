@@ -15,7 +15,9 @@
 
 // ▣ 출력예제 1 12335679
 
-function solution(arr1, arr2) {}
+function solution(arr1, arr2) {
+  return [...arr1, ...arr2].sort((a, b) => a - b).join("");
+}
 
 let a = [1, 3, 5];
 let b = [2, 3, 6, 7, 9];
