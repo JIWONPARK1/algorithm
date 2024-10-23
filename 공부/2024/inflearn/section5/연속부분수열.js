@@ -15,6 +15,16 @@
 // ▣ 출력예제 1 3
 
 function solution(m, arr) {
+  let answer = 0;
+  let p1 = 0;
+  let p2 = 0;
+
+  let total = 0;
+  while (total <= m) {
+    if (arr[p1] + arr[p2] < m) {
+      p1--;
+    }
+  }
   return answer;
 }
 

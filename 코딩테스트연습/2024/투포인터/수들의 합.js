@@ -1,3 +1,7 @@
+// https://www.acmicpc.net/problem/2003
+// N개의 수로 된 수열 A[1], A[2], …, A[N] 이 있다.
+// 이 수열의 i번째 수부터 j번째 수까지의 합 A[i] + A[i+1] + … + A[j-1] + A[j]가 M이 되는 경우의 수를 구하는 프로그램을 작성하시오.
+
 const fs = require("fs");
 const path = __dirname + "/text.txt";
 
@@ -21,16 +25,27 @@ readline
 // 문제 풀이
 function solution(input) {
   let answer = 0;
-  const [n, arr] = input;
-  const [N, M] = n.split(" ").map((e) => Number(e));
-  const numberArr = arr.split(" ").map((e) => Number(e));
+  let start = 0;
+  let end = 0;
 
-  for (i = 0; i < N - 1; i++) {
-    for (j = i; j < N - 1; j++) {
-      console.log(numberArr[i] + numberArr[j], M);
-      if (numberArr[i] + numberArr[j] === M) {
-        answer++;
-      }
+  const [n, a] = input;
+  const [N, M] = n.split(" ").map((e) => Number(e));
+  const arr = a.split(" ").map((e) => Number(e));
+  let total = arr[0];
+
+  while (end < N) {
+    // total이 M보다 클 경우 start++ , total - arr[start-1]
+    if (total > M) {
+      total -= arr[start++];
+    }
+    // total이 M보다 작을 경우 end++ , total + arr[end +1]
+    if (total < M) {
+      total += arr[++end];
+    }
+    // total이 M과 같을 경우 answer++ ,  total = 0
+    if (total === M) {
+      answer++;
+      total += arr[++end];
     }
   }
 
