@@ -19,10 +19,18 @@ function solution(m, arr) {
   let p1 = 0;
   let p2 = 0;
 
-  let total = 0;
-  while (total <= m) {
-    if (arr[p1] + arr[p2] < m) {
-      p1--;
+  let total = arr[p1];
+  while (p2 < arr.length) {
+    total += arr[p2];
+    if (total < m) {
+      p2++;
+    } else if (total > m) {
+      total = arr[p1++];
+      p2 = p1 + 1;
+    } else {
+      answer++;
+      total = arr[p1++];
+      p2 = p1 + 1;
     }
   }
   return answer;

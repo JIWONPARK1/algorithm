@@ -13,7 +13,24 @@
 // ▣ 입력예제 1 55 13123
 // ▣ 출력예제 1 10
 
-function solution(m, arr) {}
+function solution(m, arr) {
+  let answer = 0;
+
+  for (let lt = 0; lt < arr.length; lt++) {
+    let rt = lt;
+    let sum = 0;
+    while (arr[rt]) {
+      sum += arr[rt];
+      if (sum <= m) {
+        answer++;
+        rt++;
+      } else {
+        break;
+      }
+    }
+  }
+  return answer;
+}
 
 let a = [1, 3, 1, 2, 3];
 console.log(solution(5, a));
