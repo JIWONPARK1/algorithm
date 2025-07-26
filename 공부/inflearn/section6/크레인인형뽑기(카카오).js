@@ -24,8 +24,29 @@
 
 // ▣ 출력예제 1 4
 
-function solution(board, moves) {}
+function solution(board, moves) {
+  let stack = [];
+  answer = 0;
+  for (let x of moves) {
+    for (let i in board) {
+      let current = board[i][x - 1];
+      // 배열의 i번째 x요소가 0이 아닌 것 stack 넣기 & 배열해당요소 0으로 변경
+      if (current) {
+        // 마지막 문자와 지금 문자와 같다면 넣지않고 pop() & answer++
+        if (current === stack[stack.length - 1]) {
+          stack.pop();
+          answer += 2;
+        } else {
+          stack.push(current);
+        }
+        board[i][x - 1] = 0;
+        break;
+      }
+    }
+  }
 
+  return answer;
+}
 let a = [
   [0, 0, 0, 0, 0],
   [0, 0, 1, 0, 3],
