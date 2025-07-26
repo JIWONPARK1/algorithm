@@ -10,7 +10,25 @@
 // ▣ 입력예제 1 352+*9-
 // ▣ 출력예제 1 12
 
-function solution(s) {}
+function solution(s) {
+  let stack = [],
+    lt,
+    rt;
+  // for문을 돌며 연산자가 나올때 까지 push
+  for (let x of s) {
+    if (!isNaN(x)) stack.push(Number(x)); //숫자면 무조건 push
+    else {
+      // 연산자가 나오면 두번쨰 pop숫자 +  연산자 + 첫번째 pop 숫자 연산 후 push
+      rt = stack.pop();
+      lt = stack.pop();
+      if (x === "+") stack.push(lt + rt);
+      if (x === "-") stack.push(lt - rt);
+      if (x === "/") stack.push(lt / rt);
+      if (x === "*") stack.push(lt * rt);
+    }
+  }
+  return stack[0];
+}
 
 let str = "352+*9-";
 console.log(solution(str));
