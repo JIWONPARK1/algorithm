@@ -18,7 +18,11 @@
 // Caaab
 // ▣ 출력예제 2 NO
 
-function solution(str1, str2) {}
+function solution(str1, str2) {
+  str1 = str1.split("").sort().join("");
+  str2 = str2.split("").sort().join("");
+  return str1 === str2 ? "YES" : "NO";
+}
 
 let a = "AbaAeCe";
 let b = "baeeACA";
