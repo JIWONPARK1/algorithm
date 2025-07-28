@@ -27,7 +27,25 @@
 // ▣ 입력예제 2 (((()(()()))(())()))(()())
 // ▣ 출력예제 2 24
 
-function solution(s) {}
+function solution(s) {
+  //레이저가 지나갈때 안닫힌 괄호의 갯수를 순차적으로 더하면 될것같다
+  let answer = 0,
+    stack = [];
 
-let a = "()(((()())(())()))(())";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === ")") {
+      stack.pop();
+      if (s[i - 1] === "(") {
+        answer += stack.length;
+      } else {
+        answer++;
+      }
+    } else {
+      stack.push(s[i]);
+    }
+  }
+  return answer;
+}
+
+let a = "(((()(()()))(())()))(()())";
 console.log(solution(a));

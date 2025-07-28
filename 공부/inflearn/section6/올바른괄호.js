@@ -10,7 +10,19 @@
 // ▣ 입력예제 1 (()(()))(()
 // ▣ 출력예제 1 NO
 
-function solution(s) {}
+function solution(s) {
+  const stack = [];
+  for (let x of s) {
+    //')'일때 스택의 마지막 요소가 '('라면 pop()
+    if (x === "(") stack.push(x);
+    else {
+      if (stack.length === 0) return "NO";
+      stack.pop();
+    }
+  }
+  if (stack.length) return "NO";
+  return "YES";
+}
 
-let a = "(()(()))(()";
+let a = "(()(()))()";
 console.log(solution(a));

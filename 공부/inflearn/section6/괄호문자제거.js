@@ -9,7 +9,18 @@
 // ▣ 입력예제 1 (A(BC)D)EF(G(H)(IJ)K)LM(N)
 // ▣ 출력예제 1 EFLM
 
-function solution(s) {}
+function solution(s) {
+  // for문을 통해 하나씩 탐색한다
+  stack = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== ")") stack.push(s[i]);
+    else {
+      // ')'가 나오면 이전의 '('가 나올때까지 뺀다
+      while (stack.pop() !== "(");
+    }
+  }
+  return stack.join("");
+}
 
 let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
 console.log(solution(str));
