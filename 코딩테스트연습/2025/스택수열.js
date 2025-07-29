@@ -27,25 +27,29 @@ readline
   });
 
 function solution() {
-  const [n, ...numbers] = input;
-  const stack = [],
-    answer = [];
+  const [n, ...numbers] = input.map(Number);
+  const stack = [];
+  const answer = [];
+  let numIndex = 0;
+
   for (let i = 1; i <= n; i++) {
-    if (i <= numbers[0]) {
-      stack.push(i);
-      answer.push("+");
-      while (true) {
-        console.log(numbers, stack);
-        if (numbers[0] === stack[stack.length - 1]) {
-          stack.pop();
-          numbers.pop();
-          answer.push("-");
-        }
-        break;
-      }
-    } else if (i === numbers[0]) {
+    // 현재 인덱스가 수열의 첫번쨰 보다 작을 경우 > stack push
+    stack.push(i);
+    answer.push("+");
+
+    // 현재 인덱스가 수열의 첫번쨰와 같을 경우 > while문을 돌려 pop
+    while (stack.length && numbers[numIndex] === stack[stack.length - 1]) {
+      stack.pop();
+      answer.push("-");
+      numIndex++;
+    }
+
+    if (stack.length && stack[stack.length - 1] > numbers[numIndex]) {
+      return "NO";
     }
   }
-  console.log("answer", answer);
-  return answer;
+
+  // 수열의 최종 인덱스가 최대수와 다를 경우 > NO
+  if (numIndex !== n) return "NO";
+  return answer.join("\n");
 }
