@@ -11,11 +11,32 @@
 // 학급 회장으로 선택된 기호를 출력합니다.
 
 // ▣ 입력예제 1
-// 15 BACBACCACCBDEDE
+// 15 BACBABACCBDEDE
 
 // ▣ 출력예제 1 C
 
-function solution(s) {}
+function solution(s) {
+  let answer = "",
+    max = 0;
+  const map = new Map();
 
-let str = "BACBACCACCBDEDE";
+  s.split("").map((e) => {
+    if (map.has(e)) {
+      map.set(e, map.get(e) + 1);
+    } else {
+      map.set(e, 1);
+    }
+  });
+
+  for (let [key, val] of map) {
+    if (val > max) {
+      max = val;
+      answer = key;
+    }
+  }
+
+  return answer;
+}
+
+let str = "BACBACACCBDEDE";
 console.log(solution(str));

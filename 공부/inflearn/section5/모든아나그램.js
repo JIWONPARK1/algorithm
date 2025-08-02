@@ -12,7 +12,18 @@
 // ▣ 입력예제 1 bacaAacba abc
 // ▣ 출력예제 1 3
 
-function solution(s, t) {}
+function solution(s, t) {
+  let answer = 0;
+  for (let i = 0; i < s.length; i++) {
+    const text = s
+      .slice(i, i + 3)
+      .split("")
+      .sort()
+      .join("");
+    if (text === t) answer++;
+  }
+  return answer;
+}
 
 let a = "bacaAacba";
 let b = "abc";
