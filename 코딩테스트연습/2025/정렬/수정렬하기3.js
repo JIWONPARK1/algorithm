@@ -25,23 +25,25 @@ readline
 function solution() {
   const [n, ...arr] = input.map(Number);
   const max = Math.max(...arr);
-  const indexArray = Array.from({ length: max }, () => 0),
-    sum = [],
-    result = [];
+  const count = Array(max).fill(0),
+    sum = Array(max).fill(0),
+    result = Array(n);
+
   for (let x of arr) {
-    indexArray[x - 1] += 1;
+    count[x - 1]++;
   }
+
   let acc = 0;
-  indexArray.map((e, i) => {
-    sum[i] = acc + e;
-    acc += e;
-  });
+  for (let i = 0; i < max; i++) {
+    acc += count[i];
+    sum[i] = acc;
+  }
 
   for (let i = n - 1; i > 0; i--) {
     result[sum[arr[i] - 1]] = arr[i];
   }
 
-  for (let i = arr.length - 1; i >= 0; i--) {
+  for (let i = n - 1; i >= 0; i--) {
     let value = arr[i];
     sum[value - 1] -= 1;
     result[sum[value - 1]] = value;
