@@ -57,8 +57,7 @@ function solution() {
 
       case ")":
         if (!stack.length || stack[stack.length - 1] === "[") {
-          answer = 0;
-          break;
+          return 0;
         }
         if (text[i - 1] === "(") {
           answer += temp;
@@ -68,8 +67,7 @@ function solution() {
         break;
       case "]":
         if (!stack.length || stack[stack.length - 1] === "(") {
-          answer = 0;
-          break;
+          return 0;
         }
         if (text[i - 1] === "[") {
           answer += temp;
