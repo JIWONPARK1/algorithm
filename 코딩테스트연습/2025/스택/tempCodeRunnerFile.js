@@ -1,1 +1,2 @@
-return
+
+  let [n, ...arr] = input;
